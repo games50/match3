@@ -88,7 +88,11 @@ function PlayState:update(dt)
     -- go to next level if we surpass score goal
     if self.score >= self.scoreGoal then
         -- clear timers from prior PlayStates
+        -- always clear before you change state, else next state's timers
+        -- will also clear!
         Timer.clear()
+
+        gSounds['next-level']:play()
 
         -- change to begin game state with new level (incremented)
         gStateMachine:change('begin-game', {

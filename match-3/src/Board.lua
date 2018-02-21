@@ -82,6 +82,11 @@ function Board:calculateMatches()
                     table.insert(matches, match)
                 end
 
+                -- don't need to check last two if they won't be in a match
+                if x >= 7 then
+                    break
+                end
+
                 matchNum = 1
             end
         end
@@ -123,6 +128,11 @@ function Board:calculateMatches()
                 end
 
                 matchNum = 1
+
+                -- don't need to check last two if they won't be in a match
+                if y >= 7 then
+                    break
+                end
             end
         end
 

@@ -34,10 +34,11 @@ function BeginGameState:enter(def)
     -- the level text
     --
 
-    -- first, after one second, transition our alpha to 0
+    -- first, over a period of 1 second, transition our alpha to 0
     Timer.tween(1, {
         [self] = {transitionAlpha = 0}
     })
+    
     -- once that's finished, start a transition of our text label to
     -- the center of the screen over 0.25 seconds
     :finish(function()
