@@ -40,13 +40,21 @@ function StartState:init()
         {'3', 112}
     }
 
-    -- generate full table of tiles
+    -- time for a color change if it's been half a second
+    self.colorTimer = Timer.every(0.075, function()
+        -- shift every color to the next, looping the last to front
+        -- assign it to 0 so the loop below moves it to 1, default start
+        self.colors[0] = self.colors[6]
+
+        for i = 6, 1, -1 do
+            self.colors[i] = self.colors[i - 1]
+        end
+    end)
+
+    -- generate full table of tiles just for display
     for i = 1, 64 do
         table.insert(positions, gFrames['tiles'][math.random(18)][math.random(6)])
     end
-
-    -- keeps track of the transitioning of "MATCH 3"'s colors
-    self.colorTimer = 0
 
     -- used to animate our full-screen transition rect
     self.transitionAlpha = 0
@@ -58,20 +66,6 @@ end
 function StartState:update(dt)
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
-    end 
-
-    -- add delta to our timer
-    self.colorTimer = self.colorTimer + dt
-
-    -- time for a color change if it's been half a second
-    if self.colorTimer > 0.075 then
-        self.colorTimer = 0
-
-        self.colors[0] = self.colors[6]
-
-        for i = 6, 1, -1 do
-            self.colors[i] = self.colors[i - 1]
-        end
     end
 
     -- as long as can still input, i.e., we're not in a transition...
@@ -93,6 +87,9 @@ function StartState:update(dt)
                     gStateMachine:change('begin-game', {
                         level = 1
                     })
+
+                    -- remove color timer from Timer
+                    self.colorTimer:remove()
                 end)
             else
                 love.event.quit()
