@@ -46,7 +46,6 @@ function PlayState:init()
     -- subtract 1 from timer every second
     Timer.every(1, function()
         self.timer = self.timer - 1
-        print('Ticking down timer!')
 
         -- play warning sound on timer if we get low
         if self.timer <= 5 then
