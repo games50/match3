@@ -18,13 +18,13 @@ WINDOW_HEIGHT = 720
 
 function love.load()
     -- all of the intervals for our labels
-    intervals = {1, 2, 4, 3, 2}
+    intervals = {1, 2, 4, 3, 2, 8}
 
     -- all of the counters for our labels
-    counters = {0, 0, 0, 0, 0}
+    counters = {0, 0, 0, 0, 0, 0}
 
     -- create Timer entries for each interval and counter
-    for i = 1, 5 do
+    for i = 1, 6 do
         -- anonymous function that gets called every intervals[i], in seconds
         Timer.every(intervals[i], function()
             counters[i] = counters[i] + 1
@@ -59,7 +59,7 @@ function love.draw()
     push:start()
     
     -- "5" could be # of some table here for a real-world use case
-    for i = 1, 5 do
+    for i = 1, 6 do
         -- reference the counters and intervals table via i here, which is being
         -- updated with the Timer library over time thanks to Timer.update
         love.graphics.printf('Timer: ' .. tostring(counters[i]) .. ' seconds (every ' ..

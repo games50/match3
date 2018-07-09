@@ -1,6 +1,6 @@
 --[[
     GD50
-    swap0
+    swap1
 
     Showcases simple swapping of tiles on a game board, no tweening.
 ]]
@@ -197,5 +197,5 @@ function drawBoard(offsetX, offsetY)
     love.graphics.rectangle('line', selectedTile.x + offsetX, selectedTile.y + offsetY, 32, 32, 4)
 
     -- reset default color
-    love.graphics.setColor(255, 255, 255, 255)
+    -- love.graphics.setColor(255, 255, 255, 255)
 end

@@ -203,14 +203,17 @@ function Board:getFallingTiles()
                         y = (tile.gridY - 1) * 32
                     }
 
-                    -- set space back to 0, set Y to spaceY so we start back from here again
+                    -- set Y to spaceY so we start back from here again
                     space = false
                     y = spaceY
+
+                    -- set this back to 0 so we know we don't have an active space
                     spaceY = 0
                 end
             elseif tile == nil then
                 space = true
                 
+                -- if we haven't assigned a space yet, set this to it
                 if spaceY == 0 then
                     spaceY = y
                 end
@@ -227,10 +230,13 @@ function Board:getFallingTiles()
 
             -- if the tile is nil, we need to add a new one
             if not tile then
+
+                -- new tile with random color and variety
                 local tile = Tile(x, y, math.random(18), math.random(6))
                 tile.y = -32
                 self.tiles[y][x] = tile
 
+                -- create a new tween to return for this tile to fall down
                 tweens[tile] = {
                     y = (tile.gridY - 1) * 32
                 }

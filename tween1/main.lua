@@ -26,7 +26,7 @@ function love.load()
     birds = {}
 
     -- create 1000 random birds
-    for i = 1, 1000 do
+    for i = 1, 100 do
         table.insert(birds, {
             -- all start at left side
             x = 0,
@@ -93,5 +93,6 @@ function love.draw()
     end
 
     love.graphics.print(tostring(timer), 4, 4)
+    love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 4, VIRTUAL_HEIGHT - 16)
     push:finish()
 end

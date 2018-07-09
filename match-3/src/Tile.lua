@@ -27,17 +27,6 @@ function Tile:init(x, y, color, variety)
     self.variety = variety
 end
 
-function Tile:update(dt)
-
-end
-
---[[
-    Function to swap this tile with another tile, tweening the two's positions.
-]]
-function Tile:swap(tile)
-
-end
-
 function Tile:render(x, y)
     -- draw shadow
     love.graphics.setColor(34, 32, 52, 255)
