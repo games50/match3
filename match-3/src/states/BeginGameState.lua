@@ -15,6 +15,7 @@
 BeginGameState = Class{__includes = BaseState}
 
 function BeginGameState:init()
+    
     -- start our transition alpha at full, so we fade in
     self.transitionAlpha = 255
 
@@ -26,6 +27,7 @@ function BeginGameState:init()
 end
 
 function BeginGameState:enter(def)
+    
     -- grab level # from the def we're passed
     self.level = def.level
 
@@ -45,13 +47,16 @@ function BeginGameState:enter(def)
         Timer.tween(0.25, {
             [self] = {levelLabelY = VIRTUAL_HEIGHT / 2 - 8}
         })
+        
         -- after that, pause for one second with Timer.after
         :finish(function()
             Timer.after(1, function()
+                
                 -- then, animate the label going down past the bottom edge
                 Timer.tween(0.25, {
                     [self] = {levelLabelY = VIRTUAL_HEIGHT + 30}
                 })
+                
                 -- once that's complete, we're ready to play!
                 :finish(function()
                     gStateMachine:change('play', {
@@ -69,6 +74,7 @@ function BeginGameState:update(dt)
 end
 
 function BeginGameState:render()
+    
     -- render board of tiles
     self.board:render()
 
