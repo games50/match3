@@ -27,6 +27,9 @@
     http://cpetry.github.io/TextureGenerator-Online/
 ]]
 
+-- initialize our nearest-neighbor filter
+love.graphics.setDefaultFilter('nearest', 'nearest')
+
 -- this time, we're keeping all requires and assets in our Dependencies.lua file
 require 'src/Dependencies'
 
@@ -38,10 +41,10 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 512
 VIRTUAL_HEIGHT = 288
 
-function love.load()
-    -- initialize our nearest-neighbor filter
-    love.graphics.setDefaultFilter('nearest', 'nearest')
+-- speed at which our background texture will scroll
+BACKGROUND_SCROLL_SPEED = 80
 
+function love.load()
     -- window bar title
     love.window.setTitle('Match 3')
 
@@ -71,7 +74,6 @@ function love.load()
 
     -- keep track of scrolling our background on the X axis
     backgroundX = 0
-    backgroundScrollSpeed = 80
 
     -- initialize input table
     love.keyboard.keysPressed = {}
@@ -96,7 +98,7 @@ end
 
 function love.update(dt)
     -- scroll background, used across all states
-    backgroundX = backgroundX - backgroundScrollSpeed * dt
+    backgroundX = backgroundX - BACKGROUND_SCROLL_SPEED * dt
     
     -- if we've scrolled the entire image, reset it to 0
     if backgroundX <= -1024 + VIRTUAL_WIDTH - 4 + 51 then

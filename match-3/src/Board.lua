@@ -247,10 +247,6 @@ function Board:getFallingTiles()
     return tweens
 end
 
-function Board:getNewTiles()
-    return {}
-end
-
 function Board:render()
     for y = 1, #self.tiles do
         for x = 1, #self.tiles[1] do
