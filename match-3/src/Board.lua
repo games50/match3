@@ -87,12 +87,12 @@ function Board:calculateMatches()
                     table.insert(matches, match)
                 end
 
+                matchNum = 1
+
                 -- don't need to check last two if they won't be in a match
                 if x >= 7 then
                     break
                 end
-
-                matchNum = 1
             end
         end
 
@@ -146,7 +146,7 @@ function Board:calculateMatches()
             local match = {}
             
             -- go backwards from end of last row by matchNum
-            for y = 8, 8 - matchNum, -1 do
+            for y = 8, 8 - matchNum + 1, -1 do
                 table.insert(match, self.tiles[y][x])
             end
 
