@@ -179,13 +179,13 @@ function drawBoard(offsetX, offsetY)
                 if tile.gridX == highlightedX and tile.gridY == highlightedY then
                     
                     -- half opacity so we can still see tile underneath
-                    love.graphics.setColor(255, 255, 255, 128)
+                    love.graphics.setColor(1, 1, 1, 128/255)
 
                     -- rounded rectangle with the 4 at the end (corner segments)
                     love.graphics.rectangle('fill', tile.x + offsetX, tile.y + offsetY, 32, 32, 4)
 
                     -- reset color back to default
-                    love.graphics.setColor(255, 255, 255, 255)
+                    love.graphics.setColor(1, 1, 1, 1)
                 end
             end
         end
@@ -193,7 +193,7 @@ function drawBoard(offsetX, offsetY)
 
     -- drawing currently selected tile:
     -- almost opaque red color
-    love.graphics.setColor(255, 0, 0, 234)
+    love.graphics.setColor(1, 0, 0, 234/255)
 
     -- thicker line width than normal
     love.graphics.setLineWidth(4)
@@ -202,5 +202,5 @@ function drawBoard(offsetX, offsetY)
     love.graphics.rectangle('line', selectedTile.x + offsetX, selectedTile.y + offsetY, 32, 32, 4)
 
     -- reset default color
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(1, 1, 1, 1)
 end
