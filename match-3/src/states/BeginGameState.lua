@@ -89,4 +89,5 @@ function BeginGameState:render()
     -- our transition foreground rectangle
     love.graphics.setColor(1, 1, 1, self.transitionAlpha)
     love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    love.graphics.setColor(1, 1, 1, 1)
 end
