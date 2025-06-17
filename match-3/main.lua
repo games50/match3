@@ -1,5 +1,5 @@
 --[[
-    GD50
+    CS50 2D
     Match-3 Remake
 
     Author: Colton Ogden
@@ -31,7 +31,7 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
 
 -- this time, we're keeping all requires and assets in our Dependencies.lua file
-require 'src/Dependencies'
+require 'src.Dependencies'
 
 -- physical screen dimensions
 WINDOW_WIDTH = 1280
@@ -53,12 +53,13 @@ function love.load()
     math.randomseed(os.time())
 
     -- initialize our virtual resolution
-    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
-        vsync = true,
+    love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
-        resizable = true,
-        canvas = true
+        vsync = true,
+        resizable = true
     })
+
+    push.setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, { upscale = 'normal' })
 
     -- set music to loop and start
     gSounds['music']:setLooping(true)
@@ -81,7 +82,7 @@ function love.load()
 end
 
 function love.resize(w, h)
-    push:resize(w, h)
+    push.resize(w, h)
 end
 
 function love.keypressed(key)
@@ -114,11 +115,11 @@ function love.update(dt)
 end
 
 function love.draw()
-    push:start()
+    push.start()
 
     -- scrolling background drawn behind every state
     love.graphics.draw(gTextures['background'], backgroundX, 0)
     
     gStateMachine:render()
-    push:finish()
+    push.finish()
 end

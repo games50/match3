@@ -96,11 +96,11 @@ function Board:calculateMatches()
             end
         end
 
-        -- account for the last row ending with a match
+        -- account for the last column ending with a match
         if matchNum >= 3 then
             local match = {}
             
-            -- go backwards from end of last row by matchNum
+            -- go backwards from end of last column by matchNum
             for x = 8, 8 - matchNum + 1, -1 do
                 table.insert(match, self.tiles[y][x])
             end
@@ -109,13 +109,13 @@ function Board:calculateMatches()
         end
     end
 
-    -- vertical matches
+    -- vertical matches (moving by rows now)
     for x = 1, 8 do
         local colorToMatch = self.tiles[1][x].color
 
         matchNum = 1
 
-        -- every vertical tile
+        -- every vertical tile in column
         for y = 2, 8 do
             if self.tiles[y][x].color == colorToMatch then
                 matchNum = matchNum + 1
@@ -141,7 +141,7 @@ function Board:calculateMatches()
             end
         end
 
-        -- account for the last column ending with a match
+        -- account for the last row ending with a match
         if matchNum >= 3 then
             local match = {}
             

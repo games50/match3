@@ -43,7 +43,7 @@ function love.load()
             -- floating-point
             rate = math.random() + math.random(TIMER_MAX - 1),
 
-            -- start with an opacity of 0 and fade to 255 over duration as well
+            -- start with an opacity of 0 and fade in to 255 over duration as well
             opacity = 0
         })
     end
@@ -54,7 +54,7 @@ function love.load()
     -- iterate over all birds and tween to the endX location
     for k, bird in pairs(birds) do
         Timer.tween(bird.rate, {
-            -- tween bird's X to endX over bird.rate seconds
+            -- tween bird's X to endX and opacity to 255 over bird.rate seconds
             [bird] = { x = endX, opacity = 255 }
         })
     end

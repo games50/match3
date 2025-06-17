@@ -14,31 +14,31 @@
 --
 -- libraries
 --
-Class = require 'lib/class'
+Class = require 'lib.class'
 
-push = require 'lib/push'
+push = require 'lib.push'
 
 -- used for timers and tweening
-Timer = require 'lib/knife.timer'
+Timer = require 'lib.knife.timer'
 
 --
 -- our own code
 --
 
 -- utility
-require 'src/StateMachine'
-require 'src/Util'
+require 'src.StateMachine'
+require 'src.Util'
 
 -- game pieces
-require 'src/Board'
-require 'src/Tile'
+require 'src.Board'
+require 'src.Tile'
 
 -- game states
-require 'src/states/BaseState'
-require 'src/states/BeginGameState'
-require 'src/states/GameOverState'
-require 'src/states/PlayState'
-require 'src/states/StartState'
+require 'src.states.BaseState'
+require 'src.states.BeginGameState'
+require 'src.states.GameOverState'
+require 'src.states.PlayState'
+require 'src.states.StartState'
 
 gSounds = {
     ['music'] = love.audio.newSource('sounds/music3.mp3', 'static'),

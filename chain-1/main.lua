@@ -25,24 +25,24 @@ function love.load()
     flappySprite = love.graphics.newImage('flappy.png')
 
     -- table to just store flappy's X and Y
-    flappy = {x = 0, y = 0}
+    flappy = {x = 0, y = 0, opacity = 255}
 
     -- destinations are now just placed in Timer.tween, now with a :finish
     -- function after every tween that gets called once that tween is finished
     Timer.tween(MOVEMENT_TIME, {
-        [flappy] = {x = VIRTUAL_WIDTH - flappySprite:getWidth(), y = 0}
+        [flappy] = {x = VIRTUAL_WIDTH - flappySprite:getWidth(), y = 0, opacity = 0}
     })
     :finish(function()
         Timer.tween(MOVEMENT_TIME, {
-            [flappy] = {x = VIRTUAL_WIDTH - flappySprite:getWidth(), y = VIRTUAL_HEIGHT - flappySprite:getHeight()}
+            [flappy] = {x = VIRTUAL_WIDTH - flappySprite:getWidth(), y = VIRTUAL_HEIGHT - flappySprite:getHeight(), opacity = 255}
         })
         :finish(function()
             Timer.tween(MOVEMENT_TIME, {
-                [flappy] = {x = 0, y = VIRTUAL_HEIGHT - flappySprite:getHeight()}
+                [flappy] = {x = 0, y = VIRTUAL_HEIGHT - flappySprite:getHeight(), opacity = 0}
             })
             :finish(function()
                 Timer.tween(MOVEMENT_TIME, {
-                    [flappy] = {x = 0, y = 0}
+                    [flappy] = {x = 0, y = 0, opacity = 255}
                 })
             end)
         end)
@@ -73,6 +73,7 @@ end
 
 function love.draw()
     push.start()
+    love.graphics.setColor(1, 1, 1, flappy.opacity / 255)
     love.graphics.draw(flappySprite, flappy.x, flappy.y)
     push.finish()
 end

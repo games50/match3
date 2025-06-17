@@ -136,6 +136,7 @@ function StartState:render()
     -- draw our transition rect; is normally fully transparent, unless we're moving to a new state
     love.graphics.setColor(1, 1, 1, self.transitionAlpha)
     love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 --[[
@@ -158,6 +159,8 @@ function StartState:drawMatch3Text(y)
         love.graphics.printf(self.letterTable[i][1], 0, VIRTUAL_HEIGHT / 2 + y,
             VIRTUAL_WIDTH + self.letterTable[i][2], 'center')
     end
+
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 --[[
@@ -192,6 +195,8 @@ function StartState:drawOptions(y)
     end
     
     love.graphics.printf('Quit Game', 0, VIRTUAL_HEIGHT / 2 + y + 33, VIRTUAL_WIDTH, 'center')
+
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 --[[
@@ -204,4 +209,5 @@ function StartState:drawTextShadow(text, y)
     love.graphics.printf(text, 1, y + 1, VIRTUAL_WIDTH, 'center')
     love.graphics.printf(text, 0, y + 1, VIRTUAL_WIDTH, 'center')
     love.graphics.printf(text, 1, y + 2, VIRTUAL_WIDTH, 'center')
+    love.graphics.setColor(1, 1, 1, 1)
 end
